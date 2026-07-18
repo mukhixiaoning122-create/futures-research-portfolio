@@ -4,6 +4,12 @@
 
 它不是原始研究仓库的完整开源版本，不包含公司代码、真实策略参数、实盘账户、私有数据或可直接交易的 Alpha。仓库中的行情、阈值和收益仅用于确定性演示。
 
+## 在线演示
+
+**[点击打开纯静态 GitHub Pages 演示](https://mukhixiaoning122-create.github.io/futures-research-portfolio/)**
+
+在线页面读取仓库构建时生成的合成数据，不连接交易账户、不调用行情接口。希望检查FastAPI接口或运行测试时，再按下方步骤克隆项目。
+
 ## 项目想解决什么
 
 策略研究的难点不是“算出几个指标”，而是让下面几个问题形成闭环：
@@ -112,6 +118,8 @@ cta-showcase-web
 
 然后访问 `http://127.0.0.1:8000`。页面和命令行共享同一个确定性演示结果。
 
+GitHub Pages由同一份前端和同一个 `build_demo_report()` 生成，只把接口响应预先保存为静态JSON；本地FastAPI运行方式保持不变。
+
 预期测试结果：
 
 ```text
@@ -144,4 +152,3 @@ docs/                       # 架构与面试说明
 - 不提供投资建议，也不能直接用于实盘交易。
 
 更完整的设计说明见 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)，面试表达见 [docs/INTERVIEW_GUIDE.md](docs/INTERVIEW_GUIDE.md)。
-
