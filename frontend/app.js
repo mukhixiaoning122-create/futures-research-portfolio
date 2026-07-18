@@ -1,10 +1,21 @@
 const text = (id, value) => { document.getElementById(id).textContent = value; };
 
-fetch('/api/demo')
-  .then((response) => {
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    return response.json();
-  })
+const loadDemo = async () => {
+  const sources = ['/api/demo', './demo-data.json'];
+  const failures = [];
+  for (const source of sources) {
+    try {
+      const response = await fetch(source);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return await response.json();
+    } catch (error) {
+      failures.push(`${source}: ${error.message}`);
+    }
+  }
+  throw new Error(failures.join('；'));
+};
+
+loadDemo()
   .then((data) => {
     const causal = data.causal_backtest;
     const mtf = data.multi_timeframe;
@@ -24,4 +35,3 @@ fetch('/api/demo')
       node.textContent = `演示接口未启动：${error.message}`;
     });
   });
-
