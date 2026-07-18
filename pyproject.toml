@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cta-research-showcase"
+version = "0.1.0"
+description = "A sanitized, deterministic CTA strategy research portfolio project."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+web = ["fastapi>=0.115", "uvicorn>=0.30"]
+dev = ["pytest>=8", "build>=1.2"]
+
+[project.scripts]
+cta-showcase = "cta_research_showcase.demo:main"
+cta-showcase-web = "cta_research_showcase.api:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
