@@ -181,9 +181,12 @@ function handleWorkbenchAction(event) {
 
 async function boot() {
   try {
+    const demoSources = location.hostname.endsWith('github.io')
+      ? ['./demo-data.json']
+      : ['/api/demo', './demo-data.json'];
     const [modules, demo] = await Promise.all([
       fetchJson(['./assets/modules.json']),
-      fetchJson(['/api/demo', './demo-data.json'])
+      fetchJson(demoSources)
     ]);
     state.modules = modules; state.demo = demo;
     renderNavigation(); renderActiveModule();
