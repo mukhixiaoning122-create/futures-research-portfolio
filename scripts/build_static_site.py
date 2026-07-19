@@ -22,6 +22,7 @@ def build_static_site(output: Path) -> None:
     shutil.copy2(FRONTEND_DIR / "index.html", output / "index.html")
     shutil.copy2(FRONTEND_DIR / "styles.css", assets / "styles.css")
     shutil.copy2(FRONTEND_DIR / "app.js", assets / "app.js")
+    shutil.copy2(FRONTEND_DIR / "modules.json", assets / "modules.json")
     (output / "demo-data.json").write_text(
         json.dumps(build_demo_report(), ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",

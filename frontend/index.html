@@ -3,67 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="CTA策略研究能力展示：因果回测、多周期协同、因子组合与自动研究Loop。" />
-    <title>CTA Strategy Research Showcase</title>
+    <meta name="description" content="商品期货CTA策略研究工作台：趋势筛选、自动研究、因子组合、因果回测与多周期实验。" />
+    <meta name="theme-color" content="#07111c" />
+    <title>期货趋势研究 · Portfolio</title>
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body>
-    <main>
-      <header class="hero">
-        <p class="eyebrow">QUANTITATIVE RESEARCH PORTFOLIO</p>
-        <h1>从策略假设到可审计验证</h1>
-        <p class="lead">
-          一个脱敏、可复现的商品期货CTA研究样例，展示策略设计、因果边界、
-          30/60分钟协同、因子解释与研究晋级纪律。
-        </p>
-        <div class="badges">
-          <span>合成数据</span><span>无实盘接口</span><span>下一根K线执行</span>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#overview" aria-label="返回研究总览">
+          <span class="brand-mark">Q</span>
+          <span><strong>期货趋势研究</strong><small>PUBLIC RESEARCH DESK</small></span>
+        </a>
+        <div class="nav-caption">研究工作台</div>
+        <nav id="sidebar-nav" aria-label="研究模块导航"></nav>
+        <div class="sidebar-boundary">
+          <span class="boundary-dot"></span>
+          <div><strong>公开演示模式</strong><small>合成数据 · 无交易连接</small></div>
         </div>
-      </header>
+      </aside>
 
-      <section class="flow" aria-label="研究闭环">
-        <div>研究假设</div><i>→</i><div>因子协同</div><i>→</i><div>因果回测</div>
-        <i>→</i><div>封存验证</div><i>→</i><div>版本晋级</div>
-      </section>
-
-      <section class="grid">
-        <article class="card accent">
-          <p class="label">因果回测</p>
-          <strong id="signals">—</strong>
-          <p id="causal-copy">加载中</p>
-        </article>
-        <article class="card">
-          <p class="label">30/60 协同</p>
-          <strong id="mtf-decision">—</strong>
-          <p id="mtf-copy">加载中</p>
-        </article>
-        <article class="card">
-          <p class="label">因子组合</p>
-          <strong id="factor-score">—</strong>
-          <p id="factor-copy">加载中</p>
-        </article>
-        <article class="card">
-          <p class="label">研究晋级</p>
-          <strong id="loop-stage">—</strong>
-          <p id="loop-copy">加载中</p>
-        </article>
-      </section>
-
-      <section class="details">
-        <div>
-          <p class="eyebrow">DESIGN PRINCIPLES</p>
-          <h2>模型可以复杂，边界必须简单</h2>
-        </div>
-        <ul>
-          <li><b>方向与时机分离：</b>60分钟负责环境方向，30分钟负责进入时机。</li>
-          <li><b>信号与执行分离：</b>完成K线形成信号，下一根K线才允许执行。</li>
-          <li><b>Alpha与风险分离：</b>趋势提供方向，支撑压力、情绪和Local GEX调整置信度，风险因子保留否决权。</li>
-          <li><b>研究与结果分离：</b>验证集筛选候选，封存样本只开放一次，失败实验进入账本。</li>
-        </ul>
-      </section>
-
-      <footer>Portfolio demonstration · Not investment advice · No live trading connection</footer>
-    </main>
+      <div class="workspace">
+        <header class="topbar">
+          <button id="mobile-menu" class="mobile-menu" type="button" aria-label="打开模块导航">☰</button>
+          <div class="breadcrumb"><span>CTA Research</span><b>/</b><strong id="current-module">研究总览</strong></div>
+          <div class="topbar-actions">
+            <span class="live-state"><i></i> Static Demo</span>
+            <a href="https://github.com/mukhixiaoning122-create/futures-research-portfolio" target="_blank" rel="noreferrer">查看代码 ↗</a>
+          </div>
+        </header>
+        <main id="module-root" class="module-root" tabindex="-1">
+          <div class="loading-screen"><span></span><p>加载研究模块…</p></div>
+        </main>
+      </div>
+    </div>
+    <div id="sidebar-scrim" class="sidebar-scrim" aria-hidden="true"></div>
     <script src="./assets/app.js"></script>
   </body>
 </html>

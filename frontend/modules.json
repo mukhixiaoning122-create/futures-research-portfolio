@@ -1,0 +1,125 @@
+[
+  {
+    "id": "overview",
+    "icon": "⌁",
+    "eyebrow": "RESEARCH OPERATING SYSTEM",
+    "title": "研究总览",
+    "subtitle": "从市场信息、品种筛选、策略假设到因果回测和候选晋级的完整研究闭环。",
+    "principle": "系统的价值不是堆功能，而是让每个研究结论都能追溯到数据、假设、执行口径和验证阶段。",
+    "implementation": ["所有演示数据均为确定性合成数据", "研究模块共享统一的信号与候选版本边界", "公开版停在冻结候选，不连接真实交易账户"],
+    "metrics": [{"label": "研究模块", "value": "11"}, {"label": "自动化测试", "value": "29"}, {"label": "实盘接口", "value": "隔离"}],
+    "kind": "overview"
+  },
+  {
+    "id": "message-scoring",
+    "icon": "▥",
+    "eyebrow": "MARKET CONTEXT",
+    "title": "消息评分",
+    "subtitle": "把趋势、供需、库存基差、持仓流向和近期事件整理成有时间戳的结构化研究输入。",
+    "principle": "大模型负责阅读和归纳，不直接决定买卖；研究员定义评分口径，并判断基本面信息是否已经反映在价格中。",
+    "implementation": ["只使用评分时点之前能够获得的信息", "不同来源保留引用、时间戳和可信度", "输出方向、置信度和分项解释，供策略过滤而非直接下单"],
+    "metrics": [{"label": "综合判断", "value": "偏多"}, {"label": "置信度", "value": "72%"}, {"label": "信息状态", "value": "部分定价"}],
+    "kind": "message"
+  },
+  {
+    "id": "trend-ranking",
+    "icon": "⌁",
+    "eyebrow": "MARKET SELECTION",
+    "title": "趋势流畅度排名",
+    "subtitle": "寻找更适合趋势策略的品种，而不是简单追逐近期涨幅最大的品种。",
+    "principle": "趋势流畅度关注价格是否以较少反复完成方向移动。不是涨幅排名；上涨很多但反复穿越均线、深度回撤的品种并不流畅。",
+    "implementation": ["路径效率：净位移与逐K线绝对位移之比", "MA20穿越：统计上穿下穿次数与无效反复", "回撤深度和恢复速度：区分健康换手与趋势破坏", "斜率一致性：比较短、中窗口方向是否稳定", "小实体过滤：压缩低信息节点但保留原时间索引"],
+    "metrics": [{"label": "当前周期", "value": "60m"}, {"label": "候选品种", "value": "24"}, {"label": "高流畅候选", "value": "4"}],
+    "kind": "ranking"
+  },
+  {
+    "id": "strategy-research",
+    "icon": "✦",
+    "eyebrow": "STRATEGY LAB",
+    "title": "策略研究室",
+    "subtitle": "把自然语言交易思路转换成结构化策略，经过代码审计和因果回测后形成可复核报告。",
+    "principle": "自然语言提高表达效率，但信号合法性和回测口径不能交给大模型自由发挥。",
+    "implementation": ["自然语言先转换为周期、进场、退出、仓位和过滤条件", "AST审计拦截未来索引、危险调用和越权文件访问", "信号在已完成K线形成，默认下一根K线开盘执行", "结果同时保留交易记录、权益曲线和拒绝信号原因"],
+    "metrics": [{"label": "策略状态", "value": "审计通过"}, {"label": "合法信号", "value": "2"}, {"label": "拒绝信号", "value": "1"}],
+    "kind": "strategy"
+  },
+  {
+    "id": "loops",
+    "icon": "⚗",
+    "eyebrow": "AUTONOMOUS RESEARCH",
+    "title": "自动研究 Loop",
+    "subtitle": "让研究角色持续提出、反驳和改进可证伪假设，同时用固定晋级纪律限制过拟合。",
+    "principle": "Loop提高的是研究吞吐量，不是放宽证据标准；本轮相对最好不代表可以晋级。",
+    "implementation": ["两个研究角色从不同角度提出假设", "候选代码先经过AST审计和独立进程隔离", "训练集允许修改策略，验证集只判断是否达到门槛", "只有验证达标才允许打开一次封存样本", "失败实验进入失败账本，避免重复挖掘", "晋级结果进入冠军记忆，但封存样本结果不反哺研究提示"],
+    "metrics": [{"label": "本轮状态", "value": "已完成"}, {"label": "当前阶段", "value": "已晋级"}, {"label": "候选血统", "value": "C001 → C002"}],
+    "kind": "loop",
+    "stages": ["提出假设", "生成策略", "AST审计", "训练集", "验证集", "封存样本", "冠军记忆"],
+    "memory": ["失败账本：参数峰值过窄", "失败账本：跨月份方向翻转", "冠军记忆：30/60方向—时机分离"]
+  },
+  {
+    "id": "factors",
+    "icon": "⌖",
+    "eyebrow": "FACTOR DISCOVERY",
+    "title": "支撑压力因子",
+    "subtitle": "从多周期价格、均线和K线结构中提取可解释的空间与位置关系。",
+    "principle": "支撑压力不是一条神奇价格线，而是由触碰次数、反应强度、时间衰减和突破确认共同形成的概率区域。",
+    "implementation": ["在15/30分钟寻找触发，在60/120/240分钟确认背景", "统计触碰次数、拒绝幅度、突破后回踩和有效距离", "用波动尺度比较不同品种的价格空间", "保留样本量、适用状态和失败原因，不把候选直接包装成Alpha"],
+    "metrics": [{"label": "上方压力距离", "value": "2.4 ATR"}, {"label": "下方支撑强度", "value": "0.78"}, {"label": "交易空间", "value": "充足"}],
+    "kind": "levels"
+  },
+  {
+    "id": "factor-strategies",
+    "icon": "✣",
+    "eyebrow": "STRATEGY COMPOSER",
+    "title": "趋势因子策略组合",
+    "subtitle": "以关键技术指标定义核心策略，因子挖掘用于过滤、确认和优化，而不是替代策略逻辑。",
+    "principle": "趋势信号提供方向和主要收益来源；支撑压力、流畅度、情绪和Local GEX只在各自擅长的环节协同。",
+    "implementation": ["分别研究进场、持有保护、退出和反手", "母策略增强与独立策略研究使用不同路径", "低中高周期证据保留各自职责，避免重复投票", "晋级候选可送入策略研究室选择合约做因果回测"],
+    "metrics": [{"label": "核心方向", "value": "趋势延续"}, {"label": "辅助过滤", "value": "4项"}, {"label": "研究路径", "value": "独立组合"}],
+    "kind": "composer"
+  },
+  {
+    "id": "gamma-trend",
+    "icon": "◉",
+    "eyebrow": "DERIVATIVES MICROSTRUCTURE",
+    "title": "Gamma 趋势实验室",
+    "subtitle": "观察标的附近的局部Gamma结构，判断期权对冲行为更可能抑制还是放大已有趋势。",
+    "principle": "Local GEX是环境因子，不是独立方向信号。负GEX可能增强波动与趋势延续，但方向仍由价格策略确定。",
+    "implementation": ["围绕现价选择最近月和局部执行价窗口", "按执行价聚合OI、Gamma与代理GEX", "识别Gamma墙、零Gamma区域和负GEX集中区", "Call正、Put负是公开演示代理口径，不代表真实做市商仓位"],
+    "metrics": [{"label": "Local GEX", "value": "-1.84M"}, {"label": "Gamma环境", "value": "趋势放大"}, {"label": "覆盖率", "value": "86%"}],
+    "kind": "gamma"
+  },
+  {
+    "id": "period-lab",
+    "icon": "◫",
+    "eyebrow": "MULTI-TIMEFRAME LAB",
+    "title": "30/60周期研究实验室",
+    "subtitle": "用60分钟确定环境方向、30分钟寻找进入时机，并对持仓阶段进行独立保护。",
+    "principle": "方向、时机和持仓保护是三个不同问题。小周期不能随意推翻大周期，但可以改善进入和退出节奏。",
+    "implementation": ["只使用已完成的30分钟和60分钟K线", "删除低信息小实体后仍保留原始时间映射", "60分钟给方向，30分钟给触发，冲突时等待", "持仓保护区分正常回撤、趋势弱化和明确反转", "历史回测信号默认下一周期开放价执行"],
+    "metrics": [{"label": "60m环境", "value": "上行"}, {"label": "30m时机", "value": "等待回踩"}, {"label": "持仓状态", "value": "保护中"}],
+    "kind": "period"
+  },
+  {
+    "id": "sim",
+    "icon": "〽",
+    "eyebrow": "EXECUTION SANDBOX",
+    "title": "模拟盘",
+    "subtitle": "用独立槽位观察策略信号、订单和持仓状态，验证研究逻辑与执行状态之间的差异。",
+    "principle": "回测回答策略逻辑是否值得研究，模拟盘回答状态机和执行链路能否稳定工作，两者不能混为一谈。",
+    "implementation": ["策略以冻结版本接入槽位，不在执行中自动修改", "订单、成交、持仓和策略状态分别记录", "重复信号保持幂等，异常状态明确显示", "公开版不连接真实柜台，也不展示个人账户结果"],
+    "metrics": [{"label": "运行槽位", "value": "3 / 4"}, {"label": "未完成订单", "value": "0"}, {"label": "数据口径", "value": "合成"}],
+    "kind": "simulation"
+  },
+  {
+    "id": "settings",
+    "icon": "⚙",
+    "eyebrow": "SYSTEM BOUNDARY",
+    "title": "设置与系统边界",
+    "subtitle": "集中说明行情来源、研究模型、任务隔离和公开展示的安全边界。",
+    "principle": "可配置不等于可以绕过约束。数据源、模型和策略都必须服从统一的时间边界与审计规则。",
+    "implementation": ["研究任务与网页请求解耦，支持恢复和状态查询", "大模型只参与假设与结构化，不担任回测裁判", "研究系统与实盘执行系统物理隔离", "GitHub Pages只包含合成数据和通用算法演示"],
+    "metrics": [{"label": "数据", "value": "Synthetic"}, {"label": "模型调用", "value": "关闭"}, {"label": "交易连接", "value": "未接入"}],
+    "kind": "settings"
+  }
+]
