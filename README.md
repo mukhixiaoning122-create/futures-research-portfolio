@@ -10,7 +10,7 @@
 
 - **[在线交互展示](https://mukhixiaoning122-create.github.io/futures-research-portfolio/)**
 - [架构说明](docs/ARCHITECTURE.md)
-- [面试讲解](docs/INTERVIEW_GUIDE.md)
+- [讲解](docs/INTERVIEW_GUIDE.md)
 
 在线版不是截图，也不是只有文字的静态页面。它是一套运行在浏览器中的交互式研究工作台，可以切换模块、筛选条件、重排结果、查看因子证据并导出合成样本说明。
 
