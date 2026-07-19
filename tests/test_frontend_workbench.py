@@ -73,6 +73,8 @@ def test_frontend_binds_demo_report_and_handles_visible_actions() -> None:
     assert 'data-action="generate-spec"' in script
     assert 'data-action="open-strategy"' in script
     assert "handleWorkbenchAction" in script
+    assert "location.hostname.endsWith('github.io')" in script
+    assert "const demoSources" in script
 
 
 def test_overview_counts_match_public_catalog_and_test_suite() -> None:
